@@ -1,4 +1,4 @@
-# HTML Daily Task 03 - College Application Form
+# HTML Daily Task 02 - College Application Form
 
 ## 📌 Description
 
