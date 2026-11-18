@@ -1,0 +1,535 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grand Stay | Hotel Booking</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f5f7fa;
+    color: #222;
+}
+
+/* Navbar */
+header {
+    background: #102a43;
+    color: white;
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: #f0b429;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+}
+
+/* Hero */
+.hero {
+    height: 480px;
+    background: linear-gradient(
+        rgba(0,0,0,.55),
+        rgba(0,0,0,.55)
+    ), url("https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.btn {
+    background: #f0b429;
+    color: #102a43;
+    border: none;
+    padding: 13px 25px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Search */
+.search-box {
+    background: white;
+    padding: 25px;
+    width: 85%;
+    margin: -45px auto 50px;
+    position: relative;
+    box-shadow: 0 5px 20px #0002;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.search-box label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.search-box input,
+.search-box select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Sections */
+section {
+    padding: 45px 8%;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 35px;
+    color: #102a43;
+}
+
+/* Rooms */
+.rooms {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.room-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px #0001;
+    transition: .3s;
+}
+
+.room-card:hover {
+    transform: translateY(-7px);
+}
+
+.room-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.room-info {
+    padding: 20px;
+}
+
+.room-info h3 {
+    margin-bottom: 12px;
+    color: #102a43;
+}
+
+.price {
+    color: #d99a12;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.room-info button {
+    width: 100%;
+}
+
+/* About */
+.about {
+    background: #102a43;
+    color: white;
+    text-align: center;
+}
+
+.about h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.about p {
+    line-height: 1.8;
+    max-width: 750px;
+    margin: auto;
+}
+
+/* Booking */
+.booking-container {
+    max-width: 650px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px #0001;
+}
+
+.booking-container input,
+.booking-container select {
+    width: 100%;
+    padding: 13px;
+    margin: 10px 0 18px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.booking-container label {
+    font-weight: bold;
+}
+
+.booking-container button {
+    width: 100%;
+}
+
+/* Footer */
+footer {
+    background: #102a43;
+    color: white;
+    padding: 25px;
+    text-align: center;
+}
+
+#message {
+    margin-top: 15px;
+    color: green;
+    font-weight: bold;
+}
+
+@media(max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav a {
+        margin: 8px;
+        font-size: 14px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .search-box {
+        grid-template-columns: 1fr;
+    }
+
+    .rooms {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<header>
+    <div class="logo">GRAND STAY</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#rooms">Rooms</a>
+        <a href="#about">About</a>
+        <a href="#booking">Booking</a>
+    </nav>
+</header>
+
+<!-- Hero -->
+<div class="hero" id="home">
+    <div>
+        <h1>Welcome to Grand Stay</h1>
+        <p>Experience Luxury, Comfort and Happiness</p>
+        <a href="#rooms">
+            <button class="btn">Explore Rooms</button>
+        </a>
+    </div>
+</div>
+
+<!-- Search -->
+<div class="search-box">
+    <div>
+        <label>Check In</label>
+        <input type="date" id="checkin">
+    </div>
+
+    <div>
+        <label>Check Out</label>
+        <input type="date" id="checkout">
+    </div>
+
+    <div>
+        <label>Guests</label>
+        <select id="guests">
+            <option value="1">1 Guest</option>
+            <option value="2">2 Guests</option>
+            <option value="3">3 Guests</option>
+            <option value="4">4 Guests</option>
+        </select>
+    </div>
+
+    <div>
+        <label>Search</label>
+        <button class="btn" onclick="searchRooms()">Find Rooms</button>
+    </div>
+</div>
+
+<!-- Rooms -->
+<section id="rooms">
+    <h2 class="section-title">Our Luxury Rooms</h2>
+
+    <div class="rooms">
+
+        <div class="room-card">
+            <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800">
+
+            <div class="room-info">
+                <h3>Standard Room</h3>
+                <p>Comfortable room with modern facilities.</p>
+                <div class="price">₹2,000 / Night</div>
+                <button class="btn" onclick="selectRoom('Standard Room', 2000)">
+                    Book Now
+                </button>
+            </div>
+        </div>
+
+        <div class="room-card">
+            <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800">
+
+            <div class="room-info">
+                <h3>Deluxe Room</h3>
+                <p>Premium room with luxury interiors.</p>
+                <div class="price">₹3,500 / Night</div>
+                <button class="btn" onclick="selectRoom('Deluxe Room', 3500)">
+                    Book Now
+                </button>
+            </div>
+        </div>
+
+        <div class="room-card">
+            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800">
+
+            <div class="room-info">
+                <h3>Suite Room</h3>
+                <p>Elegant suite with premium comfort.</p>
+                <div class="price">₹5,000 / Night</div>
+                <button class="btn" onclick="selectRoom('Suite Room', 5000)">
+                    Book Now
+                </button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- About -->
+<section class="about" id="about">
+    <h2>About Our Hotel</h2>
+
+    <p>
+        Grand Stay Hotel provides a comfortable and luxurious
+        experience for every guest. We offer premium rooms,
+        friendly customer service, delicious food and modern
+        facilities to make your stay memorable.
+    </p>
+</section>
+
+<!-- Booking Form -->
+<section id="booking">
+    <h2 class="section-title">Book Your Stay</h2>
+
+    <div class="booking-container">
+
+        <form id="bookingForm">
+
+            <label>Customer Name</label>
+            <input type="text" id="name" placeholder="Enter your name" required>
+
+            <label>Email Address</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+
+            <label>Phone Number</label>
+            <input type="tel" id="phone" placeholder="Enter phone number"
+                   pattern="[0-9]{10}" required>
+
+            <label>Room Type</label>
+            <select id="room" required>
+                <option value="">Select Room</option>
+                <option value="Standard Room">Standard Room</option>
+                <option value="Deluxe Room">Deluxe Room</option>
+                <option value="Suite Room">Suite Room</option>
+            </select>
+
+            <label>Check In</label>
+            <input type="date" id="bookingCheckin" required>
+
+            <label>Check Out</label>
+            <input type="date" id="bookingCheckout" required>
+
+            <label>Number of Guests</label>
+            <select id="bookingGuests">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+
+            <button type="submit" class="btn">
+                Confirm Booking
+            </button>
+
+            <p id="message"></p>
+
+        </form>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>© 2026 Grand Stay Hotel. All Rights Reserved.</p>
+    <p>Contact: grandstay@example.com</p>
+</footer>
+
+<script>
+
+// Room Prices
+const prices = {
+    "Standard Room": 2000,
+    "Deluxe Room": 3500,
+    "Suite Room": 5000
+};
+
+// Minimum date
+const today = new Date().toISOString().split("T")[0];
+
+["checkin", "checkout", "bookingCheckin", "bookingCheckout"]
+.forEach(id => {
+    document.getElementById(id).min = today;
+});
+
+// Select Room
+function selectRoom(roomName, price) {
+    document.getElementById("room").value = roomName;
+    document.getElementById("booking").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+// Search Rooms
+function searchRooms() {
+
+    const checkin = document.getElementById("checkin").value;
+    const checkout = document.getElementById("checkout").value;
+
+    if (!checkin || !checkout) {
+        alert("Please select check-in and check-out dates");
+        return;
+    }
+
+    if (checkout <= checkin) {
+        alert("Check-out must be after check-in");
+        return;
+    }
+
+    document.getElementById("bookingCheckin").value = checkin;
+    document.getElementById("bookingCheckout").value = checkout;
+    document.getElementById("bookingGuests").value =
+        document.getElementById("guests").value;
+
+    document.getElementById("rooms").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+// Booking Form
+document.getElementById("bookingForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const room = document.getElementById("room").value;
+    const checkin = document.getElementById("bookingCheckin").value;
+    const checkout = document.getElementById("bookingCheckout").value;
+    const guests = document.getElementById("bookingGuests").value;
+
+    if (!room) {
+        alert("Please select a room");
+        return;
+    }
+
+    if (checkout <= checkin) {
+        alert("Please select valid booking dates");
+        return;
+    }
+
+    const nights = (new Date(checkout) - new Date(checkin))
+                  / (1000 * 60 * 60 * 24);
+
+    const total = nights * prices[room];
+
+    const booking = {
+        bookingId: "GS" + Date.now(),
+        name,
+        email,
+        phone,
+        room,
+        checkin,
+        checkout,
+        guests,
+        nights,
+        total
+    };
+
+    const bookings = JSON.parse(
+        localStorage.getItem("hotelBookings") || "[]"
+    );
+
+    bookings.push(booking);
+
+    localStorage.setItem(
+        "hotelBookings",
+        JSON.stringify(bookings)
+    );
+
+    document.getElementById("message").innerHTML =
+        "Booking Successful!<br>" +
+        "Booking ID: " + booking.bookingId + "<br>" +
+        "Total Amount: ₹" + total.toLocaleString("en-IN");
+
+    this.reset();
+
+});
+
+</script>
+
+</body>
+</html>
